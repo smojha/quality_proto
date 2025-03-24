@@ -1,0 +1,110 @@
+Title: Pharmaceutical Standard Operating Procedure Compliance Regulations - City of New York
+
+Section I: General Provisions
+1.1 Scope and Applicability
+These regulations apply to all pharmaceutical facilities engaged in the manufacture, quality control, warehousing, and distribution of medicinal products within the five boroughs of New York City.
+
+1.2 Authority
+These regulations are enforced by the New York City Department of Health and Mental Hygiene (DOHMH), under authority granted by the New York Public Health Law, the New York City Charter, and Title 24 of the Rules of the City of New York.
+
+1.3 Definitions
+
+"Pharmaceutical Facility": Any registered or licensed site conducting pharmaceutical operations.
+
+"SOP": A Standard Operating Procedure, an official document outlining structured processes.
+
+"Compliance Liaison": An appointed professional responsible for ensuring ongoing adherence to NYC-specific regulations.
+
+Section II: SOP Requirements
+2.1 General SOP Requirements
+
+SOPs must be drafted, reviewed annually, and endorsed by the facility’s Compliance Liaison.
+
+Each SOP shall exist in English and, where necessary, in languages reflective of staff linguistic needs.
+
+Archival and live copies shall be stored using redundant encrypted cloud systems hosted within U.S. jurisdictions.
+
+2.2 Content Specifications
+Every SOP must incorporate:
+
+A control number and revision tracking
+
+Purpose, applicability, and regulatory citations
+
+Roles and responsibilities matrix
+
+Detailed procedural guidance
+
+Exception handling and escalation pathways
+
+Related policies and document cross-references
+
+Section III: Facility-Specific Obligations
+3.1 Infrastructure Standards
+
+All HVAC, water, and air filtration systems must comply with NYC Building Code Article 28 and be inspected quarterly.
+
+Fire suppression systems must be tied to FDNY-approved monitoring frameworks.
+
+3.2 Training and Workforce Oversight
+
+Mandatory monthly training modules covering local labor law compliance (e.g., NYS Paid Sick Leave, Wage Theft Prevention).
+
+All GMP training records must be maintained in a format accessible to DOHMH auditors within 24 hours of request.
+
+Section IV: Documentation and Recordkeeping
+4.1 Retention Policies
+
+All documentation related to batch records, sanitation logs, complaints, and incident responses shall be retained for at least twelve (12) years.
+
+Documents must be stored in ISO 27001-compliant systems.
+
+4.2 Digital Integrity Standards
+
+All systems managing SOPs and related records must comply with 21 CFR Part 11, New York State Information Security Policy, and NYC Cyber Command’s regulations.
+
+Systems must include multi-factor authentication and real-time anomaly detection.
+
+Section V: Product-Specific Regulations
+5.1 Compounded Drugs
+
+All compounding-related SOPs must adhere to USP <795>, <797>, and NYC-adopted guidance from the New York State Board of Pharmacy.
+
+Records of sterility testing and beyond-use dating must be accessible in near real time.
+
+5.2 Orphan Drugs and Clinical Trial Samples
+
+SOPs must specify separate inventory protocols for handling experimental or compassionate-use compounds.
+
+Chain of custody procedures must be independently validated every 90 days.
+
+Section VI: Inspections and Enforcement
+6.1 Regulatory Site Visits
+
+The DOHMH may conduct random inspections in coordination with NYS Department of Health and the FDA.
+
+SOPs and related digital audit trails must be demonstrably retrievable within one hour of request.
+
+6.2 Noncompliance Consequences
+
+Breaches of these regulations are subject to graduated enforcement including cease-and-desist orders, mandatory retraining mandates, fines of up to $50,000 per infraction, and referral to state or federal authorities.
+
+Section VII: Localized Enhancements
+7.1 Urban Resilience Protocols
+
+SOPs must account for emergency response procedures during mass transit shutdowns, blackouts, and extreme weather.
+
+Facilities must demonstrate business continuity capabilities tested biannually via simulation.
+
+7.2 Public Health Partnership Obligations
+
+Any quality-related event with potential patient impact must be reported to the DOHMH and NYC Poison Control Center within twelve (12) hours.
+
+Facilities must participate in at least one citywide health coordination drill annually.
+
+Section VIII: Implementation and Amendment
+8.1 Effective Date
+These regulations shall take effect beginning October 1, 2024.
+
+8.2 Regulatory Review Schedule
+The DOHMH shall review and may revise these regulations biennially, in consultation with stakeholders and public health partners.

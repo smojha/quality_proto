@@ -1,0 +1,5 @@
+.streamlit/
+
+# envs
+.venv/
+qualia-env/
