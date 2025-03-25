@@ -176,6 +176,52 @@ class SOPComplianceAnalyzer:
         )
         
         return response.choices[0].message.content
+    
+    def generate_quiz_questions(self, sop_text):
+        prompt = f"""
+        Based on the following SOP, generate 5 short-answer quiz questions that test understanding of its content, especially compliance, procedures, and safety practices. Return the output in JSON format like this:
+
+        [
+            {{"question": "..." }},
+            ...
+        ]
+
+        SOP:
+        {sop_text}
+        """
+        response = self.client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "You are a professional instructional designer for pharmaceutical SOPs."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+        return response.choices[0].message.content
+
+    def grade_quiz_responses(self, sop_text, qa_pairs):
+        grading_prompt = f"""
+        You are a regulatory training evaluator. Rigorously grade each of the following short-answer responses (0=incorrect, 1=partially correct, 2=correct) based on the SOP provided. If you sense that the employee is not familiar with the SOP, provide constructive feedback to guide them towards the correct answer. However, if you feel that the employee is intentionally providing incorrect answers or thinks that this is a joke, mark them as such and be forceful in your tone.
+
+        Format response as JSON:
+        [
+            {{"question": "...", "answer": "...", "score": 0, "feedback": "..." }},
+            ...
+        ]
+
+        SOP:
+        {sop_text}
+
+        Q&A Pairs:
+        {qa_pairs}
+        """
+        response = self.client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "You are a compliance training evaluator."},
+                {"role": "user", "content": grading_prompt}
+            ]
+        )
+        return response.choices[0].message.content
 
 def create_pdf_from_markdown(markdown_text, filename):
     """
@@ -294,7 +340,7 @@ def main():
         st.markdown("---")
         st.header("📋 SOP Studio")
 
-        tabs = st.tabs(["🔎 Compliance Analysis", "🚀 Turbocharged SOP"])
+        tabs = st.tabs(["🔎 Compliance Analysis", "🚀 Turbocharged SOP", "📚 Classroom"])
 
         unrendered_tab_message = "⚠️ Let’s analyze your SOP and turbocharge first."
 
@@ -356,6 +402,51 @@ def main():
                     st.info(unrendered_tab_message)
             else:
                 st.info(unrendered_tab_message)
+        
+        with tabs[2]:
+            if 'turbocharged_sop' not in st.session_state and st.session_state.turbocharged_sop is None:
+                st.info("Please turbocharge your SOP first before accessing the classroom.")
+            else:
+                analyzer = SOPComplianceAnalyzer(st.secrets["OPENAI_API_KEY"])
+                
+                if st.session_state.turbocharged_sop and 'quiz_questions' not in st.session_state:
+                    with st.spinner("🧠 Generating Quiz Questions..."):
+                        quiz_json = analyzer.generate_quiz_questions(st.session_state.turbocharged_sop).replace("```json", "").replace("```", "")
+                        import json
+                        try:
+                            st.session_state.quiz_questions = json.loads(quiz_json)
+                        except:
+                            st.error("Error parsing quiz questions.")
+                
+                if 'quiz_questions' in st.session_state:
+                    st.subheader("📝 Short Answer Quiz")
+                    responses = []
+
+                    for i, q in enumerate(st.session_state.quiz_questions):
+                        st.markdown(f"**Q{i+1}: {q['question']}**")
+                        response = st.text_area(f"Your Answer {i+1}", key=f"answer_{i}")
+                        responses.append({
+                            "question": q['question'],
+                            "answer": response
+                        })
+
+                    if st.button("📤 Submit Quiz"):
+                        with st.spinner("🔍 Grading..."):
+                            import json
+                            grading_json = json.dumps(responses)
+                            graded = analyzer.grade_quiz_responses(st.session_state.turbocharged_sop, grading_json)
+                            graded = graded.replace("```json", "").replace("```", "")
+                            try:
+                                graded_results = json.loads(graded)
+                                st.subheader("📊 Results")
+                                for i, result in enumerate(graded_results):
+                                    st.markdown(f"**Q{i+1}: {result['question']}**")
+                                    st.markdown(f"**Your Answer:** {result['answer']}")
+                                    st.markdown(f"**Score:** {result['score']}/2")
+                                    st.markdown(f"**Feedback:** {result['feedback']}")
+                                    st.markdown("---")
+                            except:
+                                st.error("Failed to parse grading response.")
 
 if __name__ == "__main__":
     main()
